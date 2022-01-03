@@ -1,0 +1,63 @@
+<div class="p-grid">
+  <div class="p-col">
+    <p-card>
+      <ng-template pTemplate="header">
+          <h3 class="p-p-2">API Server connection check</h3>
+      </ng-template>
+      Status: {{(testConnectionResponse$ | async)?.test }}
+      <ng-template pTemplate="footer">
+        <button pButton type="button" label="Check" (click)="checkConnection()"></button>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="p-col">
+    <p-card>
+      <ng-template pTemplate="header">
+          <h3 class="p-p-2">Upload data</h3>
+      </ng-template>      
+      <div *ngFor="let item of uploadResult"> 
+          <div class="p-grid">
+            <div class="p-col">
+              {{item.collection}}
+            </div>      
+            <div class="p-col">
+              {{item.status}}
+            </div>                  
+            <div class="p-col">
+              {{item.message}}
+            </div>                     
+          </div>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <p-fileUpload name="files[]" [customUpload]="true" [multiple]="false" url="http://localhost:5000/api/accouns/upload" [maxFileSize]="50000000" (uploadHandler)="uploadAccountsHandler($event)"></p-fileUpload>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="p-col">
+    <p-card>
+      <ng-template pTemplate="header">
+          <h3 class="p-p-2">Top 5 buyer accounts for each year</h3>
+      </ng-template>     
+        <div *ngFor="let item of task1Result"> 
+          <div class="p-grid">
+            <div class="p-col">
+              {{item?._id.year}}
+            </div>      
+            <div class="p-col">
+              {{item?.count}}
+            </div>                  
+            <div class="p-col">
+              {{item?.account[0]?.fullName}}
+            </div>                     
+          </div>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton type="button" label="Check" (click)="getTaskResults(1)"></button>
+      </ng-template>
+    </p-card>    
+  </div>
+</div>
+
+
+
