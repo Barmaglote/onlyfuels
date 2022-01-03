@@ -16,7 +16,14 @@
 8. Start client
 	cd client 
 	npm start
+	
+MongoDB port (standard): 27017
+MongoDB API port: 5000
+Anglular Client (standard): 4200
 
-Result in Browser:
+Result in browser:
 	http://localhost:4200/	
+	1. Check connection 
+	2. Upload files
+	3. Check task 1
 	
